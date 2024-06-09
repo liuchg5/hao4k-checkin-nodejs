@@ -34,7 +34,7 @@ let cookieSJ = process.env["SJCOOKIE"];
 
 
 const SJUrl =
-    "https://www.4ksj.com/qiandao.php/";
+    "https://www.4ksj.com/";
 const hao4kUrl =
     "https://www.hao4k.cn/qiandao/";
 
