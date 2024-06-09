@@ -85,6 +85,8 @@ async function getFormHashSJ(host) {
             console.log("$ = ", $);
             let formHash = '';
             const userName = $('h2.fyy').text().replace('\n', '');
+            console.log("debug user name = ", $('user_tit__fyy').text());
+            console.log("debug222 user name = ", $('user_tit__fyy').text().replace('\n', ''));
             if (userName === '') {
                 console.log("cookie失效！");
                 host.status = false;
@@ -96,6 +98,7 @@ async function getFormHashSJ(host) {
                     let formHashStr = href.split('formhash=')[1];
                     formHash = formHashStr.substring(0, formHashStr.indexOf('&'));
                 }
+                console.log("href = ", href.text());
                 host.status = true;
                 host.formHash = formHash;
                 await checkinSJ(host);
