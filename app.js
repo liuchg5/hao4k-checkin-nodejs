@@ -80,7 +80,9 @@ async function getFormHashSJ(host) {
         })
         .then(async (response) => {
             const gb = iconv.decode(response.data, "utf-8");
+            console.log("gb = ", gb);
             const $ = cheerio.load(gb);
+            console.log("$ = ", $);
             let formHash = '';
             const userName = $('h2.fyy').text().replace('\n', '');
             if (userName === '') {
