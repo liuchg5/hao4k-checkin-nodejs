@@ -147,7 +147,8 @@ async function getFormHash(host) {
 
 async function checkinSJ(host) {
     const checkInUrl =
-        host.url + "qiandao/?mod=sign&operation=qiandao&format=text&formhash=" + host.formHash;
+        host.url + "qiandao.php?formhash=" + host.formHash;
+    // host.url + "qiandao/?mod=sign&operation=qiandao&format=text&formhash=" + host.formHash;
     let headers = host.header;
     await axios
         .get(checkInUrl, {
