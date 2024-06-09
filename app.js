@@ -157,13 +157,16 @@ async function checkinSJ(host) {
         })
         .then(async (response) => {
             const resUtf8 = iconv.decode(response.data, "utf-8");
+            console.log("resUtf8 = ", resUtf8);
             const dataStr = xmlJs.xml2json(resUtf8, {
                 compact: true,
                 spaces: 4,
             });
+            console.log("dataStr = ", dataStr);
             const data = JSON.parse(dataStr);
+            console.log("data = ", data);
             const content = data?.root?._cdata;
-
+            console.log("content = ", content);
             if (content) {
                 if (content === "今日已签") {
                     host.message = "今日已签！";
