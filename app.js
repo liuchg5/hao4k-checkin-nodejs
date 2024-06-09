@@ -80,13 +80,16 @@ async function getFormHashSJ(host) {
         })
         .then(async (response) => {
             const gb = iconv.decode(response.data, "utf-8");
+            console.log("====================");
+            console.log("====================");
+            console.log("====================");
             console.log("gb = ", gb);
             const $ = cheerio.load(gb);
             // console.log("$ = ", $);
             let formHash = '';
             // console.log("debug user name = ", $('span.user_tit').text());
             console.log("debug222 user name = ", $('span.user_tit').text().replace('\n', ''));
-            const userName = $('span.user_tit').text().replace('\n', '')
+            const userName = $('span.user_tit').text().replace('\n', '');
             if (userName === '') {
                 console.log("cookie失效！");
                 host.status = false;
@@ -157,25 +160,34 @@ async function checkinSJ(host) {
         })
         .then(async (response) => {
             const resUtf8 = iconv.decode(response.data, "utf-8");
+            console.log("====================");
+            console.log("====================");
+            console.log("====================");
             console.log("resUtf8 = ", resUtf8);
-            const dataStr = xmlJs.xml2json(resUtf8, {
-                compact: true,
-                spaces: 4,
-            });
-            console.log("dataStr = ", dataStr);
-            const data = JSON.parse(dataStr);
-            console.log("data = ", data);
-            const content = data?.root?._cdata;
+            const $ = cheerio.load(resUtf8);
+            const content = $('div.comiis_password_top > p.f_c').text().replace('\n', '');
             console.log("content = ", content);
-            if (content) {
-                if (content === "今日已签") {
-                    host.message = "今日已签！";
-                } else if(content === "已签到"){
-                    host.message = "签到成功!";
-                }
-            } 
-            host.status = true;
-            await getCheckinInfoSJ(host);
+
+            // const resUtf8 = iconv.decode(response.data, "utf-8");
+            // console.log("resUtf8 = ", resUtf8);
+            // const dataStr = xmlJs.xml2json(resUtf8, {
+            //     compact: true,
+            //     spaces: 4,
+            // });
+            // console.log("dataStr = ", dataStr);
+            // const data = JSON.parse(dataStr);
+            // console.log("data = ", data);
+            // const content = data?.root?._cdata;
+            // console.log("content = ", content);
+            // if (content) {
+            //     if (content === "今日已签") {
+            //         host.message = "今日已签！";
+            //     } else if(content === "已签到"){
+            //         host.message = "签到成功!";
+            //     }
+            // } 
+            // host.status = true;
+            // await getCheckinInfoSJ(host);
         })
         .catch((error) => {
             console.log(host.name, "签到出错或超时" + error);
