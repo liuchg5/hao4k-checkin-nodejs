@@ -166,7 +166,7 @@ async function checkinSJ(host) {
             // console.log("resUtf8 = ", resUtf8);
             const $ = cheerio.load(resUtf8);
             const content = $('div.comiis_password_top > p.f_c').text().replace('\n', '');
-            // console.log("content = ", content);
+            console.log("content = ", content);
 
             // const resUtf8 = iconv.decode(response.data, "utf-8");
             // console.log("resUtf8 = ", resUtf8);
