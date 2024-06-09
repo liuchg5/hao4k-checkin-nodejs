@@ -95,7 +95,8 @@ async function getFormHashSJ(host) {
                 console.log(host.name, "获取用户信息成功！");
                 // const href = $('#plugin > div.comiis_body > div.comiis_sidenv_box > div.comiis_sidenv_top.f_f > div.sidenv_exit > a:nth-child(1)').attr('href');
                 const href = $('div.comiis_body > div.comiis_sidenv_box > div.comiis_sidenv_top.f_f > div.sidenv_exit > a:nth-child(1)').attr('href');
-                console.log("href = ", href.text());
+                // console.log("href = ", href.text());  wrong
+                console.log("href = ", href);
                 if (href.indexOf('formhash=') !== -1) {
                     let formHashStr = href.split('formhash=')[1];
                     formHash = formHashStr.substring(0, formHashStr.indexOf('&'));
