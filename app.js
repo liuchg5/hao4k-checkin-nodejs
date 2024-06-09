@@ -82,9 +82,9 @@ async function getFormHashSJ(host) {
             const gb = iconv.decode(response.data, "utf-8");
             console.log("gb = ", gb);
             const $ = cheerio.load(gb);
-            console.log("$ = ", $);
+            // console.log("$ = ", $);
             let formHash = '';
-            console.log("debug user name = ", $('span.user_tit').text());
+            // console.log("debug user name = ", $('span.user_tit').text());
             console.log("debug222 user name = ", $('span.user_tit').text().replace('\n', ''));
             const userName = $('span.user_tit').text().replace('\n', '')
             if (userName === '') {
@@ -147,7 +147,7 @@ async function getFormHash(host) {
 
 async function checkinSJ(host) {
     const checkInUrl =
-        host.url + "qiandao.php?formhash=" + host.formHash;
+        host.url + "qiandao.php?sign=" + host.formHash;
     // host.url + "qiandao/?mod=sign&operation=qiandao&format=text&formhash=" + host.formHash;
     let headers = host.header;
     await axios
