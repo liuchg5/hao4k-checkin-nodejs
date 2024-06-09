@@ -84,9 +84,9 @@ async function getFormHashSJ(host) {
             const $ = cheerio.load(gb);
             console.log("$ = ", $);
             let formHash = '';
-            const userName = $('h2.fyy').text().replace('\n', '');
             console.log("debug user name = ", $('span.user_tit').text());
             console.log("debug222 user name = ", $('span.user_tit').text().replace('\n', ''));
+            const userName = $('span.user_tit').text().replace('\n', '')
             if (userName === '') {
                 console.log("cookie失效！");
                 host.status = false;
