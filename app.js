@@ -80,15 +80,15 @@ async function getFormHashSJ(host) {
         })
         .then(async (response) => {
             const gb = iconv.decode(response.data, "utf-8");
-            // console.log("====================");
-            // console.log("====================");
-            // console.log("====================");
-            // console.log("gb = ", gb);
+            console.log("====================");
+            console.log("====================");
+            console.log("====================");
+            console.log("gb = ", gb);
             const $ = cheerio.load(gb);
-            // console.log("$ = ", $);
+            console.log("$ = ", $);
             let formHash = '';
-            // console.log("debug user name = ", $('span.user_tit').text());
-            // console.log("debug222 user name = ", $('span.user_tit').text().replace('\n', ''));
+            console.log("debug user name = ", $('span.user_tit').text());
+            console.log("debug222 user name = ", $('span.user_tit').text().replace('\n', ''));
             const userName = $('span.user_tit').text().replace('\n', '');
             if (userName === '') {
                 console.log("cookie失效！");
@@ -99,12 +99,12 @@ async function getFormHashSJ(host) {
                 // const href = $('#plugin > div.comiis_body > div.comiis_sidenv_box > div.comiis_sidenv_top.f_f > div.sidenv_exit > a:nth-child(1)').attr('href');
                 const href = $('div.comiis_body > div.comiis_sidenv_box > div.comiis_sidenv_top.f_f > div.sidenv_exit > a:nth-child(1)').attr('href');
                 // console.log("href = ", href.text());  wrong
-                // console.log("href = ", href);
+                console.log("href = ", href);
                 if (href.indexOf('formhash=') !== -1) {
                     let formHashStr = href.split('formhash=')[1];
                     formHash = formHashStr.substring(0, formHashStr.indexOf('&'));
                 }
-                // console.log("formHash = ", formHash);
+                console.log("formHash = ", formHash);
                 host.status = true;
                 host.formHash = formHash;
                 await checkinSJ(host);
@@ -160,10 +160,10 @@ async function checkinSJ(host) {
         })
         .then(async (response) => {
             const resUtf8 = iconv.decode(response.data, "utf-8");
-            // console.log("====================");
-            // console.log("====================");
-            // console.log("====================");
-            // console.log("resUtf8 = ", resUtf8);
+            console.log("====================");
+            console.log("====================");
+            console.log("====================");
+            console.log("resUtf8 = ", resUtf8);
             const $ = cheerio.load(resUtf8);
             const content = $('div.comiis_password_top > p.f_c').text().replace('\n', '');
             console.log("content = ", content);
